@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import entities.Prestito;
 import utils.JpaUtils;
 
@@ -17,10 +20,10 @@ public class PrestitoDAO extends JpaUtils {
 			em.persist(pr);
 			t.commit();
 			
-			System.out.println("Prestito inserito correttamente!");
+			logger.info("Prestito inserito correttamente!");
 		}
 		catch(Exception e) {
-			System.out.println("Errore nell'inserimento del Prestito");
+			logger.error("Errore nell'inserimento del Prestito");
 		}
 	}
 	
@@ -35,14 +38,14 @@ public class PrestitoDAO extends JpaUtils {
 			System.out.println("Ricerca degli elementi attualmente in prestito dato un numero di tessera utente:");
 			
 			if(results.isEmpty()) {
-				System.out.println("Nessun elemento trovato!");
+				logger.error("Nessun elemento trovato!");
 			} else {
 				for(Prestito pr : results) {
 					System.out.println(pr);
 				}
 			}
 		} catch(Exception e) {
-			System.out.println("Errore nella ricerca");
+			logger.error("Errore nella ricerca");
 		}
 	}
 	
@@ -56,14 +59,14 @@ public class PrestitoDAO extends JpaUtils {
 			System.out.println("Ricerca di tutti i prestiti scaduti e non ancora restituiti:");
 			
 			if(results.isEmpty()) {
-				System.out.println("Nessun elemento trovato!");
+				logger.error("Nessun elemento trovato!");
 			} else {
 				for(Prestito pr : results) {
 					System.out.println(pr);
 				}
 			}
 		} catch(Exception e) {
-			System.out.println("Errore nella ricerca");
+			logger.error("Errore nella ricerca");
 		}
 	}
 	

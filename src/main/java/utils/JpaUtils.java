@@ -5,7 +5,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 public class JpaUtils {
+	
+	protected static final Logger logger = LoggerFactory.getLogger(JpaUtils.class);
 	
 	private static final String persistenceUnit = "BE-Week3-Progetto";
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory(persistenceUnit);
@@ -16,7 +22,7 @@ public class JpaUtils {
 		try {
 			emf = Persistence.createEntityManagerFactory(persistenceUnit);
 		} catch (Throwable ex) {
-			System.err.println("Initial EntityManagerFactory creation failed." + ex);
+			logger.error("Initial EntityManagerFactory creation failed." + ex);
 			throw new ExceptionInInitializerError(ex);
 		}
 	}

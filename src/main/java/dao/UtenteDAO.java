@@ -11,10 +11,10 @@ public class UtenteDAO extends JpaUtils {
 			em.persist(ut);
 			t.commit();
 			
-			System.out.println("Utente inserito correttamente!");
+			logger.info("Utente inserito correttamente!");
 		}
 		catch(Exception e) {
-			System.out.println("Errore nell'inserimento dell'Utente");
+			logger.error("Errore nell'inserimento dell'Utente");
 		}
 	}
 	

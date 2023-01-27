@@ -17,7 +17,7 @@ public class App {
 	public static void main(String[] args) {
 		
 		// Istanziamento classi
-		Libro lib = new Libro("Titolo libro 1", 2010, 450, "Mario", "Horror");
+		Libro lib = new Libro("Titolo libro 61", 2020, 500, "Davide", "Fantasy");
 		Rivista riv = new Rivista("Titolo rivista 20", 2015, 88, Periodicita.MENSILE);
 		Utente ut = new Utente("Alessia", "Lacitignola", LocalDate.parse("1998-04-21"));
 		Prestito pr = new Prestito(ut, riv, LocalDate.parse("2022-12-12"));
@@ -36,7 +36,7 @@ public class App {
 		//searchByAutore("Mario");
 		//searchByTitolo("ivista");
 		
-		//searchPrestatiByNumUtente(3); //NON VA
+		//searchPrestatiByNumUtente(3);
 		//searchPrestitiScaduti();
 
 	}

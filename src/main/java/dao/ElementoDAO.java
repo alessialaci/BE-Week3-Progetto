@@ -8,10 +8,11 @@ import entities.ElementoBiblioteca;
 import entities.Libro;
 import utils.JpaUtils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class ElementoDAO extends JpaUtils {
-
-	//private static final Logger logger = LoggerFactory.getLogger(ElementoBiblioteca.class);
 
 	// Metodo per salvare gli elementi sul database
 	public void save(ElementoBiblioteca eb) {
@@ -19,10 +20,10 @@ public class ElementoDAO extends JpaUtils {
 			t.begin();
 			em.persist(eb);
 			t.commit();
-			System.out.println("Elemento inserito correttamente");
+			logger.info("Elemento inserito correttamente");
 		}
 		catch(Exception e) {
-			System.out.println("Errore nell'inserimento dell'Elemento");
+			logger.error("Errore nell'inserimento dell'Elemento");
 		}
 	}
 	
@@ -40,10 +41,10 @@ public class ElementoDAO extends JpaUtils {
 			t.begin();
 			em.remove(eb);
 			t.commit();
-			System.out.println("Elemento eliminato");
+			logger.info("Elemento eliminato");
 		}
 		catch(Exception e) {
-			System.out.println("Errore nell'eliminazione dell'Elemento");
+			logger.error("Errore nell'eliminazione dell'Elemento");
 		}
 	}
 	
@@ -53,11 +54,11 @@ public class ElementoDAO extends JpaUtils {
 		ElementoBiblioteca eb = em.find(ElementoBiblioteca.class, isbn);
 		
 		if(eb == null) {
-			System.out.println("Errore nella ricerca");
+			logger.error("Errore nella ricerca");
 			return;
 		}
 		
-		System.out.println( "Dati Elemento con codice " + isbn );
+		System.out.println("Dati Elemento con codice " + isbn);
 		System.out.printf("Titolo: %s, Anno pubblicazione: %d, Pagine: %d%n", eb.getTitolo(), eb.getAnnoPubblicazione(), eb.getNPagine());
 	}
 	
@@ -72,14 +73,14 @@ public class ElementoDAO extends JpaUtils {
 			System.out.println("Ricerca elemento per anno pubblicazione:");
 	
 			if(results.isEmpty()) {
-				System.out.println("Nessun elemento trovato");
+				logger.error("Nessun elemento trovato");
 			} else {
 				for(ElementoBiblioteca el : results) {
 					System.out.println(el);
 				}
 			}
 		} catch(Exception e) {
-			System.out.println("Errore nella ricerca");
+			logger.error("Errore nella ricerca");
 		}
 	}
 	
@@ -95,14 +96,14 @@ public class ElementoDAO extends JpaUtils {
 			System.out.println("Ricerca elemento per autore:");
 			
 			if(results.isEmpty()) {
-				System.out.println("Nessun elemento trovato");
+				logger.error("Nessun elemento trovato");
 			} else {
 				for(Libro l : results) {
 					System.out.println(l);
 				}
 			}
 		} catch(Exception e) {
-			System.out.println("Errore nella ricerca");
+			logger.error("Errore nella ricerca");
 		}
 	}
 	
@@ -118,14 +119,14 @@ public class ElementoDAO extends JpaUtils {
 			System.out.println("Ricerca per titolo o parte di esso:");
 			
 			if(results.isEmpty()) {
-				System.out.println("Nessun elemento trovato");
+				logger.error("Nessun elemento trovato");
 			} else {
 				for(ElementoBiblioteca e : results) {
 					System.out.println(e);
 				}
 			}
 		} catch(Exception e) {
-			System.out.println("Errore nella ricerca");
+			logger.error("Errore nella ricerca");
 		}
 	}
 	
