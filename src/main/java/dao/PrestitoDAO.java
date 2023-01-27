@@ -2,10 +2,8 @@ package dao;
 
 import java.util.List;
 
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import entities.Prestito;
 import utils.JpaUtils;
@@ -28,15 +26,16 @@ public class PrestitoDAO extends JpaUtils {
 	}
 	
 	// Metodo Ricerca degli elementi attualmente in prestito dato un numero di tessera utente con NamedQuery
-	public void searchPrestatiByNumUtente(long numTessera) {
+	public void searchPrestatiByNumUtente(long tessera) {
 		try {
-			Query q = em.createNamedQuery("searchPrestatiByNumUtente");
-			q.setParameter("numTessera", numTessera);
-			
-			List<Prestito> results = q.getResultList();
-			
-			System.out.println("Ricerca degli elementi attualmente in prestito dato un numero di tessera utente:");
-			
+			t.begin();
+
+			Query query = em.createNamedQuery("searchPrestatiByNumUtente");
+			query.setParameter("tessera", tessera);
+			List<Prestito> results = query.getResultList();
+
+			t.commit();
+			System.out.println("Elementi attualmente in prestito dato un numero di tessera utente:");
 			if(results.isEmpty()) {
 				logger.error("Nessun elemento trovato!");
 			} else {
@@ -44,8 +43,11 @@ public class PrestitoDAO extends JpaUtils {
 					System.out.println(pr);
 				}
 			}
-		} catch(Exception e) {
+
+		} catch (Exception ex) {
 			logger.error("Errore nella ricerca");
+			em.getTransaction().rollback();
+			throw ex;
 		}
 	}
 	

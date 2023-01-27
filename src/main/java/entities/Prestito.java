@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -20,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@NamedQuery(name = "searchPrestatiByNumUtente", query = "SELECT p FROM Prestito p WHERE p.numeroUtente = :numTessera AND p.restituzioneEffettiva IS NULL")
+@NamedQuery(name = "searchPrestatiByNumUtente", query = "SELECT p FROM Prestito p WHERE p.numTessera = :tessera AND p.restituzioneEffettiva IS NULL")
 @NamedQuery(name = "searchPrestitiScaduti", query = "SELECT p FROM Prestito p WHERE p.restituzioneEffettiva IS NULL AND p.restituzionePrevista < CURRENT_DATE")
 public class Prestito {
 	
@@ -28,8 +30,7 @@ public class Prestito {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "id_utente")
-	private long numeroUtente;
+	private long numTessera;
 	
 	@Column(name = "elemento_prestato")
 	private String elemPrestato;
@@ -43,20 +44,21 @@ public class Prestito {
 	@Column(name = "restituzione_effettiva")
 	private LocalDate restituzioneEffettiva;
 
-	public Prestito(Utente utente, ElementoBiblioteca elemPrestato, LocalDate inizioPrestito, LocalDate restituzioneEffettiva) {
-		this.numeroUtente = utente.getNumeroTessera();
+	public Prestito(long numTessera, ElementoBiblioteca elemPrestato, LocalDate inizioPrestito, LocalDate restituzioneEffettiva) {
+		this.numTessera = numTessera;
 		this.elemPrestato = elemPrestato.getTitolo();
 		this.inizioPrestito = inizioPrestito;
 		this.restituzionePrevista = this.setRestituzionePrevista(inizioPrestito);
 		this.restituzioneEffettiva = restituzioneEffettiva;
 	}
 	
-	public Prestito(Utente utente, ElementoBiblioteca elemPrestato, LocalDate inizioPrestito) {
-		this.numeroUtente = utente.getNumeroTessera();
+	public Prestito(long numTessera, ElementoBiblioteca elemPrestato, LocalDate inizioPrestito) {
+		this.numTessera = numTessera;
 		this.elemPrestato = elemPrestato.getTitolo();
 		this.inizioPrestito = inizioPrestito;
 		this.restituzionePrevista = this.setRestituzionePrevista(inizioPrestito);
 	}
+	
 
 	public LocalDate setRestituzionePrevista(LocalDate restituzionePrevista) {
 		return this.restituzionePrevista = this.inizioPrestito.plusDays(30);
@@ -64,7 +66,7 @@ public class Prestito {
 
 	@Override
 	public String toString() {
-		return "Prestito [id=" + id + ", numeroUtente=" + numeroUtente + ", elemPrestato=" + elemPrestato
+		return "Prestito [id=" + id + ", numeroUtente=" + numTessera + ", elemPrestato=" + elemPrestato
 				+ ", inizioPrestito=" + inizioPrestito + ", restituzionePrevista=" + restituzionePrevista
 				+ ", restituzioneEffettiva=" + restituzioneEffettiva + "]";
 	}
