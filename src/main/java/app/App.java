@@ -16,22 +16,24 @@ public class App {
 
 	public static void main(String[] args) {
 		
-		Libro lib = new Libro("Titolo libro 5", 2013, 400, "Mary", "Fantasy");
-		Rivista riv = new Rivista("Titolo rivista 22", 2015, 100, Periodicita.SEMESTRALE);
-		Utente ut = new Utente("Peach", "Ciclamini", LocalDate.parse("1995-05-11"));
+		Libro lib = new Libro("Titolo libro 1", 2010, 450, "Mario", "Horror");
+		Rivista riv = new Rivista("Titolo rivista 20", 2015, 88, Periodicita.MENSILE);
+		Utente ut = new Utente("Alessia", "Lacitignola", LocalDate.parse("1998-04-21"));
 		Prestito pr = new Prestito(ut, riv, LocalDate.parse("2023-01-28"));
 		
-		//ElementoBiblioteca el = saveElemento(riv);
-		//Utente u = saveUtente(ut);
-		//Prestito p = savePrestito(pr);
-		//deleteElementoByIsbn();
+		ElementoBiblioteca el1 = saveElemento(lib);
+		ElementoBiblioteca el2 = saveElemento(riv);
+		Utente u = saveUtente(ut);
+		Prestito p = savePrestito(pr);
+		
+		//deleteElementoByIsbn(450000000000100L);
 		
 		//searchByAutore("Mario");
-		//searchByAnno(2014);
+		//searchByAnno(2005);
 		//searchByTitolo("ibro");
 		
-		//searchPrestatiByNumUtente(3); //NON FUNZIONAAAAAAAAAA
-		searchPrestitiScaduti();
+		//searchPrestatiByNumUtente(3); //NON VA
+		//searchPrestitiScaduti();
 
 	}
 	
@@ -53,9 +55,9 @@ public class App {
 		return pr;
 	}
 	
-	private static void deleteElementoByIsbn() {
+	private static void deleteElementoByIsbn(long isbn) {
 		ElementoDAO elementoDAO = new ElementoDAO();
-		elementoDAO.deleteByIsbn(300);
+		elementoDAO.deleteByIsbn(isbn);
 	}
 	
 	private static void searchByAutore(String autore) {

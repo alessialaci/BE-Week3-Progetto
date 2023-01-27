@@ -61,14 +61,14 @@ public class ElementoDAO extends JpaUtils {
 		System.out.printf("Titolo: %s, Anno pubblicazione: %d, Pagine: %d%n", eb.getTitolo(), eb.getAnnoPubblicazione(), eb.getNPagine());
 	}
 	
-	// Metodo Ricerca per anno pubblicazione con NamedQuery
+	// Metodo Ricerca elemento per anno pubblicazione con NamedQuery
 	public void searchByAnno(int anno) {
 		try {
 			Query q = em.createNamedQuery("searchByAnno");
 			q.setParameter("anno", anno);
 			
 			List<ElementoBiblioteca> results = q.getResultList();
-			
+	
 			for(ElementoBiblioteca el : results) {
 				System.out.println(el);
 			}

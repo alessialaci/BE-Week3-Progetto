@@ -10,6 +10,7 @@ import utils.JpaUtils;
 
 public class PrestitoDAO extends JpaUtils {
 	
+	// Metodo per salvare il prestito sul database
 	public void save(Prestito pr) {
 		try {
 			t.begin();
@@ -22,7 +23,6 @@ public class PrestitoDAO extends JpaUtils {
 			System.out.println("Errore nell'inserimento del Prestito");
 		}
 	}
-	
 	
 	// Metodo Ricerca degli elementi attualmente in prestito dato un numero di tessera utente con NamedQuery
 	public void searchPrestatiByNumUtente(long numTessera) {
