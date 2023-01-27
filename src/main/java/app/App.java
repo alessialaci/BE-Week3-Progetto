@@ -16,21 +16,25 @@ public class App {
 
 	public static void main(String[] args) {
 		
+		// Istanziamento classi
 		Libro lib = new Libro("Titolo libro 1", 2010, 450, "Mario", "Horror");
 		Rivista riv = new Rivista("Titolo rivista 20", 2015, 88, Periodicita.MENSILE);
 		Utente ut = new Utente("Alessia", "Lacitignola", LocalDate.parse("1998-04-21"));
-		Prestito pr = new Prestito(ut, riv, LocalDate.parse("2023-01-28"));
+		Prestito pr = new Prestito(ut, riv, LocalDate.parse("2022-12-12"));
 		
-		ElementoBiblioteca el1 = saveElemento(lib);
-		ElementoBiblioteca el2 = saveElemento(riv);
-		Utente u = saveUtente(ut);
-		Prestito p = savePrestito(pr);
+		// Creazione Tabelle
+		//ElementoBiblioteca el1 = saveElemento(lib);
+		//ElementoBiblioteca el2 = saveElemento(riv);
+		//Utente u = saveUtente(ut);
+		//Prestito p = savePrestito(pr);
 		
-		//deleteElementoByIsbn(450000000000100L);
+		// Metodi
+		//deleteElementoByIsbn(450000000000050L);
 		
+		//searchByIsbn(450000000000050L);
+		//searchByAnno(2015);
 		//searchByAutore("Mario");
-		//searchByAnno(2005);
-		//searchByTitolo("ibro");
+		//searchByTitolo("ivista");
 		
 		//searchPrestatiByNumUtente(3); //NON VA
 		//searchPrestitiScaduti();
@@ -58,6 +62,11 @@ public class App {
 	private static void deleteElementoByIsbn(long isbn) {
 		ElementoDAO elementoDAO = new ElementoDAO();
 		elementoDAO.deleteByIsbn(isbn);
+	}
+	
+	private static void searchByIsbn(long isbn) {
+		ElementoDAO elementoDAO = new ElementoDAO();
+		elementoDAO.searchByIsbn(isbn);
 	}
 	
 	private static void searchByAutore(String autore) {

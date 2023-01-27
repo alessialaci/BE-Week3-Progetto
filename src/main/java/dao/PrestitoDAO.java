@@ -32,8 +32,14 @@ public class PrestitoDAO extends JpaUtils {
 			
 			List<Prestito> results = q.getResultList();
 			
-			for(Prestito pr : results) {
-				System.out.println(pr);
+			System.out.println("Ricerca degli elementi attualmente in prestito dato un numero di tessera utente:");
+			
+			if(results.isEmpty()) {
+				System.out.println("Nessun elemento trovato!");
+			} else {
+				for(Prestito pr : results) {
+					System.out.println(pr);
+				}
 			}
 		} catch(Exception e) {
 			System.out.println("Errore nella ricerca");
@@ -44,10 +50,17 @@ public class PrestitoDAO extends JpaUtils {
 	public void searchPrestitiScaduti() {
 		try {
 			Query q = em.createNamedQuery("searchPrestitiScaduti");
+			
 			List<Prestito> results = q.getResultList();
 			
-			for(Prestito pr : results) {
-				System.out.println(pr);
+			System.out.println("Ricerca di tutti i prestiti scaduti e non ancora restituiti:");
+			
+			if(results.isEmpty()) {
+				System.out.println("Nessun elemento trovato!");
+			} else {
+				for(Prestito pr : results) {
+					System.out.println(pr);
+				}
 			}
 		} catch(Exception e) {
 			System.out.println("Errore nella ricerca");

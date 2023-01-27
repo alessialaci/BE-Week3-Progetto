@@ -68,9 +68,15 @@ public class ElementoDAO extends JpaUtils {
 			q.setParameter("anno", anno);
 			
 			List<ElementoBiblioteca> results = q.getResultList();
+			
+			System.out.println("Ricerca elemento per anno pubblicazione:");
 	
-			for(ElementoBiblioteca el : results) {
-				System.out.println(el);
+			if(results.isEmpty()) {
+				System.out.println("Nessun elemento trovato");
+			} else {
+				for(ElementoBiblioteca el : results) {
+					System.out.println(el);
+				}
 			}
 		} catch(Exception e) {
 			System.out.println("Errore nella ricerca");
@@ -78,7 +84,7 @@ public class ElementoDAO extends JpaUtils {
 	}
 	
 	
-	// Metodo Ricerca per autore con Named Query
+	// Metodo Ricerca elemento per autore con Named Query
 	public void searchByAutore(String autore) {
 		try {
 			Query q = em.createNamedQuery("searchByAutore");
@@ -86,8 +92,14 @@ public class ElementoDAO extends JpaUtils {
 			
 			List<Libro> results = q.getResultList();
 			
-			for(Libro l : results) {
-				System.out.println(l);
+			System.out.println("Ricerca elemento per autore:");
+			
+			if(results.isEmpty()) {
+				System.out.println("Nessun elemento trovato");
+			} else {
+				for(Libro l : results) {
+					System.out.println(l);
+				}
 			}
 		} catch(Exception e) {
 			System.out.println("Errore nella ricerca");
@@ -103,8 +115,14 @@ public class ElementoDAO extends JpaUtils {
 			
 			List<ElementoBiblioteca> results = q.getResultList();
 			
-			for(ElementoBiblioteca el : results) {
-				System.out.println(el);
+			System.out.println("Ricerca per titolo o parte di esso:");
+			
+			if(results.isEmpty()) {
+				System.out.println("Nessun elemento trovato");
+			} else {
+				for(ElementoBiblioteca e : results) {
+					System.out.println(e);
+				}
 			}
 		} catch(Exception e) {
 			System.out.println("Errore nella ricerca");
