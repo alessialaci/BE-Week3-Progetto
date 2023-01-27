@@ -17,27 +17,26 @@ public class App {
 	public static void main(String[] args) {
 		
 		// Istanziamento classi
-		Libro lib = new Libro("Titolo libro 68", 2016, 257, "Erasmo", "Giallo");
-		Rivista riv = new Rivista("Titolo rivista 70", 2018, 98, Periodicita.MENSILE);
-		Utente ut = new Utente("Angelo", "Antonacci", LocalDate.parse("1998-04-21"));
-		
+		Libro lib = new Libro("Harry Potter", 2000, 651, "Rowling", "Fantasy");
+		Rivista riv = new Rivista("Libero", 2022, 57, Periodicita.SETTIMANALE);
+		Utente ut = new Utente("Alessia", "Lacitignola", LocalDate.parse("1998-04-21"));
 		Prestito pr1 = new Prestito(1, riv, LocalDate.parse("2022-12-12"), LocalDate.parse("2023-01-10"));
 		Prestito pr2 = new Prestito(1, lib, LocalDate.parse("2022-12-12"));
 		
 		// Creazione Tabelle
-		//ElementoBiblioteca el1 = saveElemento(lib);
-		//ElementoBiblioteca el2 = saveElemento(riv);
-		//Utente u = saveUtente(ut);
-		//Prestito p = savePrestito(pr1);
-		//Prestito p2 = savePrestito(pr2);
+		//saveElemento(lib);
+		//saveElemento(riv);
+		//saveUtente(ut);
+		//savePrestito(pr1);
+		//savePrestito(pr2);
 		
 		// Metodi
-		//deleteElementoByIsbn(450000000000050L);
+		//deleteElementoByIsbn(450000000000350L);
 		
-		//searchByIsbn(450000000000050L);
-		//searchByAnno(2015);
-		//searchByAutore("Mario");
-		//searchByTitolo("ivista");
+		//searchByIsbn(450000000000400L);
+		//searchByAnno(2022);
+		//searchByAutore("Rowling");
+		//searchByTitolo("Harry");
 		
 		//searchPrestatiByNumUtente(1);
 		//searchPrestitiScaduti();
@@ -96,7 +95,5 @@ public class App {
 		PrestitoDAO prestitoDAO = new PrestitoDAO();
 		prestitoDAO.searchPrestitiScaduti();
 	}
-	
-
 
 }

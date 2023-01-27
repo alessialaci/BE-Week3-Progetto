@@ -8,9 +8,6 @@ import entities.ElementoBiblioteca;
 import entities.Libro;
 import utils.JpaUtils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 
 public class ElementoDAO extends JpaUtils {
 
@@ -54,7 +51,7 @@ public class ElementoDAO extends JpaUtils {
 		ElementoBiblioteca eb = em.find(ElementoBiblioteca.class, isbn);
 		
 		if(eb == null) {
-			logger.error("Errore nella ricerca");
+			logger.error("Elemento non trovato");
 			return;
 		}
 		
@@ -81,6 +78,8 @@ public class ElementoDAO extends JpaUtils {
 			}
 		} catch(Exception e) {
 			logger.error("Errore nella ricerca");
+		} finally {
+			em.close();
 		}
 	}
 	
@@ -104,6 +103,8 @@ public class ElementoDAO extends JpaUtils {
 			}
 		} catch(Exception e) {
 			logger.error("Errore nella ricerca");
+		} finally {
+			em.close();
 		}
 	}
 	
@@ -127,6 +128,8 @@ public class ElementoDAO extends JpaUtils {
 			}
 		} catch(Exception e) {
 			logger.error("Errore nella ricerca");
+		} finally {
+			em.close();
 		}
 	}
 	

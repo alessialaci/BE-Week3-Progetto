@@ -2,7 +2,6 @@ package dao;
 
 import java.util.List;
 
-import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import entities.Prestito;
@@ -48,6 +47,8 @@ public class PrestitoDAO extends JpaUtils {
 			logger.error("Errore nella ricerca");
 			em.getTransaction().rollback();
 			throw ex;
+		} finally {
+			em.close();
 		}
 	}
 	
@@ -69,6 +70,8 @@ public class PrestitoDAO extends JpaUtils {
 			}
 		} catch(Exception e) {
 			logger.error("Errore nella ricerca");
+		} finally {
+			em.close();
 		}
 	}
 	
