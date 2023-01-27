@@ -26,6 +26,8 @@ public class App {
 		//ElementoBiblioteca el1 = saveElemento(lib);
 		//ElementoBiblioteca el2 = saveElemento(riv);
 		//Utente u = saveUtente(ut);
+		
+		
 		//Prestito p = savePrestito(pr);
 		
 		// Metodi

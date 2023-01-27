@@ -31,7 +31,7 @@ public class Prestito {
 	@Column(name = "id_utente")
 	private long numeroUtente;
 	
-	@Column(name = "name_pubblicazione")
+	@Column(name = "elemento_prestato")
 	private String elemPrestato;
 
 	@Column(name = "inizio_prestito")
